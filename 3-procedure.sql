@@ -7,6 +7,7 @@ BEGIN
     FROM tblThuoc
     WHERE MaThuoc = @MaThuoc;
 END;
+GO
 
 -- 2. Thủ tục tính tổng số lượng mua của một hoá đơn
 CREATE PROCEDURE spTongSoLuongMuaTheoHoaDon
@@ -17,6 +18,7 @@ BEGIN
     FROM tblCTHoaDon
     WHERE MaHoaDon = @MaHoaDon;
 END;
+GO
 
 -- 3. Thủ tục tính tổng tiền bán hàng của một hoá đơn
 CREATE PROCEDURE spTongTienBanHangTheoHoaDon
@@ -27,6 +29,7 @@ BEGIN
     FROM tblCTHoaDon
     WHERE MaHoaDon = @MaHoaDon;
 END;
+GO
 
 -- 4. Thủ tục cập nhật thông tin hoá đơn khi có chi tiết hoá đơn mới
 CREATE PROCEDURE spCapNhatThongTinHoaDon
@@ -41,6 +44,7 @@ BEGIN
     )
     WHERE MaHoaDon = @MaHoaDon;
 END;
+GO
 
 -- 5. Thủ tục lấy thông tin hoá đơn theo mã khách hàng
 CREATE PROCEDURE spLayThongTinHoaDonTheoKhachHang
@@ -51,4 +55,5 @@ BEGIN
     FROM tblHoaDon hd
     WHERE hd.MaKhachHang = @MaKhachHang;
 END;
+GO
 

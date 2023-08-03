@@ -13,6 +13,7 @@ BEGIN
     SET SoLuongTon = SoLuongTon - @SoLuong
     WHERE MaThuoc = @MaThuoc;
 END;
+GO
 
 -- 2. Trigger cập nhật số lượng tồn của thuốc khi có chi tiết hoá đơn bị xóa
 CREATE TRIGGER trUpdateSoLuongTonThuocAfterDelete
@@ -29,6 +30,7 @@ BEGIN
     SET SoLuongTon = SoLuongTon + @SoLuong
     WHERE MaThuoc = @MaThuoc;
 END;
+GO
 
 -- 3. Trigger cập nhật số lượng tồn của thuốc khi có chi tiết hoá đơn bị sửa đổi số lượng
 CREATE TRIGGER trUpdateSoLuongTonThuocAfterUpdate
@@ -47,6 +49,7 @@ BEGIN
     SET SoLuongTon = SoLuongTon + @SoLuongCu - @SoLuongMoi
     WHERE MaThuoc = @MaThuoc;
 END;
+GO
 
 -- 4. Trigger cập nhật tổng tiền hoá đơn khi có chi tiết hoá đơn mới được thêm vào
 CREATE TRIGGER trUpdateTongTienHoaDonAfterInsert
@@ -66,6 +69,7 @@ BEGIN
     )
     WHERE MaHoaDon = @MaHoaDon;
 END;
+GO
 
 -- 5. Trigger cập nhật tổng tiền hoá đơn khi có chi tiết hoá đơn bị xóa
 CREATE TRIGGER trUpdateTongTienHoaDonAfterDelete
@@ -85,3 +89,4 @@ BEGIN
     )
     WHERE MaHoaDon = @MaHoaDon;
 END;
+GO
