@@ -24,3 +24,55 @@ GRANT SELECT, INSERT ON tblHoaDon TO nhanvien;
 GRANT SELECT, INSERT ON tblCTHoaDon TO nhanvien;
 GRANT EXECUTE ON spTongSoLuongTonThuoc TO nhanvien;
 GRANT EXECUTE ON spTongSoLuongMuaTheoHoaDon TO nhanvien;
+
+-- DEMO
+-- Đăng nhập bằng tài khoản "chutiem"
+USE DrugstoreManagement;
+EXECUTE AS LOGIN = 'chutiem';
+
+-- Thực hiện các câu lệnh query có quyền đầy đủ
+-- Ví dụ: Xem thông tin tất cả các bảng
+SELECT * FROM tblThuoc;
+SELECT * FROM tblKhachHang;
+SELECT * FROM tblNhanVien;
+SELECT * FROM tblHoaDon;
+SELECT * FROM tblCTHoaDon;
+
+-- Thực hiện các thủ tục có quyền EXECUTE
+-- Ví dụ: Gọi thủ tục tính tổng số lượng tồn của một loại thuốc
+EXEC spTongSoLuongTonThuoc @MaThuoc = 1;
+
+-- Thực hiện các thủ tục không có quyền EXECUTE
+-- Ví dụ: Gọi thủ tục tính tổng số lượng mua của một hoá đơn
+-- (Chú ý: tài khoản "chutiem" không có quyền EXECUTE thủ tục này)
+-- EXEC spTongSoLuongMuaTheoHoaDon @MaHoaDon = 1;
+
+-- Thoát khỏi chế độ đăng nhập "chutiem"
+REVERT;
+
+
+-- Đăng nhập bằng tài khoản "nhanvien"
+USE DrugstoreManagement;
+EXECUTE AS LOGIN = 'nhanvien';
+
+-- Thực hiện các câu lệnh SELECT trên các bảng
+-- Ví dụ: Xem thông tin tất cả các bảng
+SELECT * FROM tblThuoc;
+SELECT * FROM tblKhachHang;
+SELECT * FROM tblNhanVien;
+SELECT * FROM tblHoaDon;
+SELECT * FROM tblCTHoaDon;
+
+-- Thực hiện các câu lệnh INSERT trên bảng tblHoaDon và tblCTHoaDon
+-- Ví dụ: Thêm dữ liệu vào bảng tblHoaDon
+INSERT INTO tblHoaDon (MaHoaDon, MaKhachHang, MaNhanVien, NgayLap, TongTien)
+VALUES (6, 3, 1, '2023-08-03', 250000);
+
+-- Thực hiện các câu lệnh không có quyền INSERT trên các bảng khác
+-- Ví dụ: Thêm dữ liệu vào bảng tblThuoc
+-- INSERT INTO tblThuoc (MaThuoc, TenThuoc, DonViTinh, GiaTien, SoLuongTon)
+-- VALUES (6, N'New Drug', N'Viên', 20000, 50);
+
+-- Thoát khỏi chế độ đăng nhập "nhanvien"
+REVERT;
+

@@ -8,7 +8,7 @@ GO
 
 -- Tạo bảng tblThuoc (Thuốc)
 CREATE TABLE tblThuoc (
-    MaThuoc INT PRIMARY KEY,
+    MaThuoc INT IDENTITY(1,1) PRIMARY KEY,
     TenThuoc NVARCHAR(100),
     DonViTinh NVARCHAR(20),
     GiaTien DECIMAL(10, 2),
@@ -17,7 +17,7 @@ CREATE TABLE tblThuoc (
 
 -- Tạo bảng tblKhachHang (Khách hàng)
 CREATE TABLE tblKhachHang (
-    MaKhachHang INT PRIMARY KEY,
+    MaKhachHang INT IDENTITY(1,1) PRIMARY KEY,
     TenKhachHang NVARCHAR(100),
     DiaChi NVARCHAR(200),
     DienThoai NVARCHAR(20)
@@ -25,7 +25,7 @@ CREATE TABLE tblKhachHang (
 
 -- Tạo bảng tblNhanVien (Nhân viên)
 CREATE TABLE tblNhanVien (
-    MaNhanVien INT PRIMARY KEY,
+    MaNhanVien INT IDENTITY(1,1) PRIMARY KEY,
     TenNhanVien NVARCHAR(100),
     ChucVu NVARCHAR(50),
     NgaySinh DATE,
@@ -34,7 +34,7 @@ CREATE TABLE tblNhanVien (
 
 -- Tạo bảng tblHoaDon (Hoá đơn)
 CREATE TABLE tblHoaDon (
-    MaHoaDon INT PRIMARY KEY,
+    MaHoaDon INT IDENTITY(1,1) PRIMARY KEY,
     MaKhachHang INT,
     MaNhanVien INT,
     NgayLap DATE,
@@ -45,11 +45,11 @@ CREATE TABLE tblHoaDon (
 
 -- Tạo bảng tblCTHoaDon (Chi tiết hoá đơn)
 CREATE TABLE tblCTHoaDon (
-    MaCTHoaDon INT PRIMARY KEY,
     MaHoaDon INT,
     MaThuoc INT,
     SoLuong INT,
     ThanhTien DECIMAL(10, 2),
+    PRIMARY KEY (MaHoaDon, MaThuoc),
     FOREIGN KEY (MaHoaDon) REFERENCES tblHoaDon(MaHoaDon),
     FOREIGN KEY (MaThuoc) REFERENCES tblThuoc(MaThuoc)
 );

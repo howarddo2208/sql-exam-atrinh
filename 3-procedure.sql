@@ -57,3 +57,9 @@ BEGIN
 END;
 GO
 
+-- DEMO
+EXEC spTongSoLuongTonThuoc @MaThuoc = 3;
+EXEC spTongSoLuongMuaTheoHoaDon @MaHoaDon = 1;
+EXEC spTongTienBanHangTheoHoaDon @MaHoaDon = 2;
+EXEC spCapNhatThongTinHoaDon @MaHoaDon = 3;
+EXEC spLayThongTinHoaDonTheoKhachHang @MaKhachHang = 2;

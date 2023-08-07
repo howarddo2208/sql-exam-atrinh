@@ -24,7 +24,7 @@ GO
 
 -- View lấy thông tin từ bảng tblCTHoaDon (Chi tiết hoá đơn)
 CREATE VIEW vwThongTinCTHoaDon AS
-SELECT MaCTHoaDon, MaHoaDon, MaThuoc, SoLuong, ThanhTien
+SELECT MaHoaDon, MaThuoc, SoLuong, ThanhTien
 FROM tblCTHoaDon;
 GO
 
@@ -62,3 +62,22 @@ FROM tblHoaDon hd
 INNER JOIN tblCTHoaDon ct ON hd.MaHoaDon = ct.MaHoaDon
 GROUP BY hd.MaHoaDon;
 GO
+
+-- DEMO
+-- Xem thông tin của một hoá đơn cụ thể
+SELECT * FROM vwThongTinHoaDon WHERE MaHoaDon = 1;
+
+-- Xem thông tin chi tiết của một hoá đơn cụ thể
+SELECT * FROM vwThongTinCTHoaDon WHERE MaHoaDon = 1;
+
+-- Xem thông tin của một loại thuốc cụ thể và tổng số lượng tồn trong kho
+SELECT * FROM vwTongSoLuongTonThuoc WHERE TenThuoc = N'Paracetamol';
+
+-- Xem thông tin của một khách hàng cụ thể và các hoá đơn đã được lập
+SELECT * FROM vwThongTinHoaDonVaKhachHang WHERE TenKhachHang = N'Nguyễn Văn A';
+
+-- Xem thông tin của một nhân viên cụ thể và các hoá đơn đã được lập
+SELECT * FROM vwThongTinHoaDonVaKhachHang WHERE TenNhanVien = N'Nguyễn Thị X';
+
+-- Xem tổng số tiền bán hàng của từng hoá đơn
+SELECT * FROM vwTongTienBanHangTheoHoaDon;
